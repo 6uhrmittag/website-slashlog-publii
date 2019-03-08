@@ -578,7 +578,7 @@ textarea {
   position: relative;
   z-index: 999; }
   .logo > img {
-    max-height: 2rem;
+    max-height: 4rem;
     max-width: 5rem; }
 
 @media all and (max-width: 56.1875em) {

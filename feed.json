@@ -5,6 +5,7 @@
     "home_page_url": "https://slashlog.org",
     "feed_url": "https://slashlog.org/feed.json",
     "user_comment": "",
+    "icon": "https://slashlog.org/media/website/dojo-1.png",
     "author": {
         "name": "marvin"
     },
