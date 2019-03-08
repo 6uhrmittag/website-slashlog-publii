@@ -3,10 +3,42 @@
     <title>slashlog</title>
     <link href="https://6uhrmittag.github.io/website-slashlog-publii/feed.xml" rel="self" />
     <link href="https://6uhrmittag.github.io/website-slashlog-publii" />
-    <updated>1970-01-01T01:00:00+01:00</updated>
+    <updated>2019-03-08T22:41:35+01:00</updated>
     <author>
         <name>marvin</name>
     </author>
     <id>https://6uhrmittag.github.io/website-slashlog-publii</id>
 
+    <entry>
+        <title>bashblog</title>
+        <author>
+            <name>marvin</name>
+        </author>
+        <link href="https://6uhrmittag.github.io/website-slashlog-publii/bashblog/"/>
+        <id>https://6uhrmittag.github.io/website-slashlog-publii/bashblog/</id>
+
+        <updated>2019-03-08T22:40:05+01:00</updated>
+            <summary>
+                <![CDATA[
+                    bashblog is a static blog generator, link list and knowledge base. It solves a simple problem: How to preserve the thought or a summary of an article or video. bashblog receives links and videos via email and stores a text connected to it. This way an article and the gained knowledge keeps its value. Share via mail is available on every platform, in every app and tool. E-mail is lightweight and works everywhere, even in the subway. By storing whole sentences it becomes searchable and even indexable by Google. bashblog started as a simple script, but by publishing it to GitHub, it thought me much more than scripting.
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>bashblog is a static blog generator, link list and knowledge base.<br>It solves a simple problem: How to preserve the thought or a summary of an article or video.</p>
+<figure class="post__image post__image--center" ><img src="https://6uhrmittag.github.io/website-slashlog-publii/media/posts/1/demo.png" alt="bashblog screenshot" width="1042" height="653">
+<figcaption >bashblog screenshot</figcaption>
+</figure>
+<p>bashblog receives links and videos via email and stores a text connected to it. This way an article and the gained knowledge keeps its value.</p>
+<div class="callout callout-primary">
+<div>
+<p class="msg msg--info"><em>Share via mail is available on every platform, in every app and tool.</em></p>
+<p><em>E-mail is lightweight and works everywhere, even in the subway.</em></p>
+<p class="msg msg--highlight  msg--info">By storing whole sentences it becomes searchable and even indexable by Google.</p>
+<p>bashblog started as a simple script, but by <a href="https://github.com/6uhrmittag/bashblog" target="_blank" rel="noopener noreferrer">publishing it to GitHub</a>, it thought me much more than scripting.</p>
+</div>
+</div>
+            ]]>
+        </content>
+    </entry>
 </feed>
