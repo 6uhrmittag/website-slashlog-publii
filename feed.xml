@@ -3,12 +3,61 @@
     <title>slashlog</title>
     <link href="https://slashlog.org/feed.xml" rel="self" />
     <link href="https://slashlog.org" />
-    <updated>2019-03-09T00:45:17+01:00</updated>
+    <updated>2019-03-09T15:18:11+01:00</updated>
     <author>
         <name>marvin</name>
     </author>
     <id>https://slashlog.org</id>
 
+    <entry>
+        <title>every tool deserves a name</title>
+        <author>
+            <name>marvin</name>
+        </author>
+        <link href="https://slashlog.org/every-tool-deserves-a-name/"/>
+        <id>https://slashlog.org/every-tool-deserves-a-name/</id>
+
+        <updated>2019-03-09T15:07:13+01:00</updated>
+            <summary>
+                <![CDATA[
+                    <p>Maintaining a tool requires time and effort. By naming a tool it becomes a thing; a thing that can be loved.</p>
+<p class="msg msg--info">By choosing a pretty name it becomes harder to abandon it.</p>
+<p>you don’t want your baby to crash and fail during tests.</p>
+
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>Maintaining a tool requires time and effort. By naming a tool it becomes a thing; a thing that can be loved.</p>
+<p class="msg msg--info">By choosing a pretty name it becomes harder to abandon it.</p>
+<p>you don’t want your baby to crash and fail during tests.</p>
+
+<p>Naming can also be a hard part. Suddenly it becomes real - it’s a choice that requires responsibility. Naming forces you also to think about the future of your tool.</p>
+<ul>
+<li>Does it need a domain for documentation?</li>
+<li>Could a Github organisation be useful?</li>
+<li>Docker, Twitter?!</li>
+<li>Will it be listed on distribution platforms or stores like pypi?</li>
+<li>Does it interact with 3rd party APIs?</li>
+</ul>
+<p>Tools like <a href="https://namechk.com/" target="_blank" rel="noopener noreferrer">namechk </a>help to check availability on multiple platforms at once.</p>
+<p>Finding the name can take time and so, can distract you from further development, but it shouldn't. Using name generators, browsing domain registrar websites and simply asking friends can help to accelerate the process.</p>
+<p>Once a pretty name is found, wait a day, register accounts and just go with it.</p>
+<h2 id="mcetoc_1d5hbi7ps3">bashblog - just a repo</h2>
+<p id="mcetoc_1d5hbi7ps4">Finding a name for bashblog was pretty easy. It's written in bash, its a blog. There are similarly named projects, but since I've never had the intention to make a huge project out of it, it only needed <a href="https://github.com/6uhrmittag/bashblog" target="_blank" rel="noopener noreferrer">a Github repo</a>.</p>
+<h2 id="mcetoc_1d5hbig675">taskbutler - a potential product</h2>
+<p id="mcetoc_1d5hbig686">Taskbutler started as a simple tool to customize Todoist. It required API access from the beginning. Soon it also required access Dropbox and GitHub.</p>
+<p class="msg msg--info">When using APIs it's often required to register the app with its name.</p>
+<p>Fortunately, companies want you to use their APIs; they will guide you through the process and usually provide clear hints and requirements. The <a href="https://developer.todoist.com/sync/v7/#brand-usage" target="_blank" rel="noopener noreferrer">Todoist API Documentation</a> clearly states:</p>
+<p class="msg msg--warning">“Todoist” cannot be the first word in your application’s name. It can be used in the name of your app, though. For instance “x for Todoist” or “x with Todoist”, etc. This makes it clear that your application is created by you and not by Doist.</p>
+<p class="msg msg--warning">You must clearly state that your application is "not created by, affiliated with, or supported by Doist” in your application description.</p>
+<p>Quite obvious and understandable but important to remember.</p>
+<h2 id="mcetoc_1d5hbki4c7">dream big</h2>
+<p id="mcetoc_1d5hbki4c8">taskbutler started as todoist-progress. One problem, solved with one script. Since I had to rename todoist-progress anyway, I thought about future features a lot. It became quite obvious that it could be my potential first web app. Since domains cost only a few coffees, I soon registered taskbutler.org. The main reason I choose .org as TLD since .org not tied to a language or country.</p>
+<p>It took a few days to rename todoist-progress to taskbutler. Check your <a href="https://www.jetbrains.com/help/pycharm/rename-refactorings.html" target="_blank" rel="noopener noreferrer">IDE for refactoring/renaming features</a> - it helps a lot.</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>bashblog</title>
         <author>
@@ -17,15 +66,17 @@
         <link href="https://slashlog.org/bashblog/"/>
         <id>https://slashlog.org/bashblog/</id>
 
-        <updated>2019-03-08T22:40:05+01:00</updated>
+        <updated>2019-03-09T15:01:40+01:00</updated>
             <summary>
                 <![CDATA[
-                    bashblog is a static blog generator, link list and knowledge base. It solves a simple problem: How to preserve the thought or a summary of an article or video. bashblog receives links and videos via email and stores a text connected to it. This way an article and the gained knowledge keeps its value. Share via mail is available on every platform, in every app and tool. E-mail is lightweight and works everywhere, even in the subway. By storing whole sentences it becomes searchable and even indexable by Google. bashblog started as a simple script, but by publishing it to GitHub, it thought me much more than scripting.
+                    <p>bashblog is a static blog generator, link list and knowledge base.<br>It solves a simple problem: How to preserve the thought or a summary of an article or video.</p>
+
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>bashblog is a static blog generator, link list and knowledge base.<br>It solves a simple problem: How to preserve the thought or a summary of an article or video.</p>
+
 <figure class="post__image post__image--center" ><img src="https://slashlog.org/media/posts/1/demo.png" alt="bashblog screenshot" width="1042" height="653">
 <figcaption >bashblog screenshot</figcaption>
 </figure>
