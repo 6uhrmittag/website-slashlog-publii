@@ -3,12 +3,155 @@
     <title>slashlog</title>
     <link href="https://slashlog.org/feed.xml" rel="self" />
     <link href="https://slashlog.org" />
-    <updated>2019-03-09T15:18:11+01:00</updated>
+    <updated>2019-03-10T17:17:52+01:00</updated>
     <author>
         <name>marvin</name>
     </author>
     <id>https://slashlog.org</id>
 
+    <entry>
+        <title>LibMan - exploring Java</title>
+        <author>
+            <name>marvin</name>
+        </author>
+        <link href="https://slashlog.org/libman-java-library-management-app/"/>
+        <id>https://slashlog.org/libman-java-library-management-app/</id>
+
+        <updated>2019-03-10T17:16:39+01:00</updated>
+            <summary>
+                <![CDATA[
+                    <p>This documents the development of LibMan - a Java programming assignment.</p>
+<p>The goal is to create a library management tool with GUI written in Java.<br>Since this is my first and probably last Java application, I'll use this opportunity to focus on stuff I'm personally interested in:</p>
+<ul>
+<li>how to use a CI with Java</li>
+<li>how to test Java applications</li>
+<li>how to ship Java applications (to Windows)</li>
+<li>usage of design patterns
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>This documents the development of LibMan - a Java programming assignment.</p>
+<p>The goal is to create a library management tool with GUI written in Java.<br>Since this is my first and probably last Java application, I'll use this opportunity to focus on stuff I'm personally interested in:</p>
+<ul>
+<li>how to use a CI with Java</li>
+<li>how to test Java applications</li>
+<li>how to ship Java applications (to Windows)</li>
+<li>usage of design patterns<hr></li>
+</ul>
+<div class="post__toc">
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#mcetoc_1d5hvj3980">First things first: a pretty name</a></li>
+<li><a href="#mcetoc_1d5i0f32u4">Versioning - git, Github, Gitlab, Bitbucket?</a></li>
+<li><a href="#mcetoc_1d5i0252k1">Tough decision: License</a></li>
+<li><a href="#mcetoc_1d5i199855">IDE vs. VIM</a></li>
+<li><a href="#mcetoc_1d5i1oje97">The wizard of new project - setting up a project</a></li>
+<li><a href="#mcetoc_1d5i3e8398">Instant Motivation: adding tests</a>
+<ul>
+<li><a href="#mcetoc_1d5i3rffh9">First refactoring</a></li>
+<li><a href="#mcetoc_1d5icomueb">Adding a simple test</a></li>
+</ul>
+</li>
+<li><a href="#mcetoc_1d5idbv1sc">Adding Travis-CI - pom.xml - complexity here we come</a>
+<ul>
+<li><a href="#mcetoc_1d5k3l76le">adding maven</a></li>
+<li><a href="#mcetoc_1d5k432grf">.travis.yaml</a></li>
+<li><a href="#mcetoc_1d5k4b7jsg">A personal motivator: Travis-CI</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr>
+<p>I won't focus on code quality; I'll reuse code I created during the last semester and use as much IDE features as possible.</p>
+<p>The assignment requires:</p>
+<ul>
+<li>diagrams</li>
+<li>test data</li>
+<li>GUI with JavaFX</li>
+</ul>
+<p class="msg msg--highlight ">Note: The code will contain German text.</p>
+<h2 id="mcetoc_1d5hvj3980">First things first: a pretty name</h2>
+<p>As I already pointed out, I think a name is important.</p>
+<p class="msg msg--success align-center">LibMan</p>
+<p>done.</p>
+<h2 id="mcetoc_1d5i0f32u4">Versioning - git, Github, Gitlab, Bitbucket?</h2>
+<p>Even if we won't use all features of versioing, if it is code</p>
+<p class="msg msg--info">there is no excuse to not use versioning.</p>
+<p>I'll use <a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a>.</p>
+<p class="msg msg--info">I'm not a fan of <a href="https://gitlab.com" target="_blank" rel="noopener noreferrer">Gitlab </a>- I just get distracted by all its features.</p>
+<p>Github solves one problem: Versioning. I'll connect external services as soon as I need them.</p>
+<p class="msg msg--info">Simplicity is king, especially for beginners.</p>
+<p>I'll use a private repository for the time of the development. Github kindly provides private repositories for all users and a set of free tools for students: <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">GitHub Student Developer Pack.</a><br>The pack enables students to use TravisCI with private repositories👏.</p>
+<h2 id="mcetoc_1d5i0252k1">Tough decision: License</h2>
+<p>Github kindly reminds us that licensing can be important. This is a programming assignment - it's only purpose is to learn stuff and be helpful for others:</p>
+<p class="msg msg--info">MIT makes sharing as simple as possible.</p>
+<h2 id="mcetoc_1d5i199855">IDE vs. VIM</h2>
+<p>It would be cool to use VIM to write code. But, thanks to the <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">GitHub Student Developer Pack</a> I'm able to use<a href="https://www.jetbrains.com/idea" target="_blank" rel="noopener noreferrer"> IntelliJ IDEA Ultimate</a>. I never looked into Java IDEs - IntelliJ just works.</p>
+<h2 id="mcetoc_1d5i1oje97">The magical wizard - setting up a project</h2>
+<p>Since I don't even know that half of the choices mean, I just the magical wizard to create a JavaFX app with Java 1.8 SDK.</p>
+<p class="msg msg--info">Don't add anything to the initial project that you don't understand. Add complexity as needed.</p>
+<p>Run the initial project to make sure you start with a working project. We'll break it later, but it should run at least once.</p>
+<figure class="post__image post__image--center" ><img src="https://slashlog.org/media/posts/4/LibMan_firstRun.png" alt="First run." width="654" height="411">
+<figcaption >First run.</figcaption>
+</figure>
+<h2 id="mcetoc_1d5i3e8398">Instant Motivation: adding tests</h2>
+<p>Writing tests can be annoying and take time, but tests not only ensure a working build, they also provide feedback and motivation. Since we know that the empty project worked, we'll add a test to ensure this state.</p>
+<h3 id="mcetoc_1d5i3rffh9">First refactoring</h3>
+<p id="mcetoc_1d5icht6ra">Luckily there is a testing framework for testing javaFx: <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX</a></p>
+<p>But, adding tests requires a few changes to our initial project structure:</p>
+<ol>
+<li>Create a "testing"-directory according to this Stackoverflow answer: <a href="https://stackoverflow.com/questions/41638654/java-project-folder-structure-in-intellij-idea" target="_blank" rel="noopener noreferrer" title="Java project folder structure in IntelliJ IDEA">https://stackoverflow.com/questions/41638654/java-project-folder-structure-in-intellij-idea</a>:
+<pre><code>/src/</code><br><code>/src/main/com/</code><br><code>/src/main/com/LibMan/</code><br><code>/tests/</code><br>/tests/com/<br><code>/tests/com/LibMan</code></pre>
+</li>
+<li>add junit by following the <a href="https://www.jetbrains.com/help/idea/configuring-testing-libraries.html" target="_blank" rel="noopener noreferrer">jetbrains guide</a>
+<ol>
+<li>make sure to rember your choice! junit4 or junit5.</li>
+</ol>
+</li>
+<li>add TestFX with Maven:
+<figure class="post__image post__image--center" ><img src="https://slashlog.org/media/posts/4/LibMan_addMavenDependency.png" alt="adding a dependendy" width="916" height="346">
+<figcaption >Pick the version that fits your junit version!</figcaption>
+</figure>
+</li>
+</ol>
+<h3 id="mcetoc_1d5icomueb">Adding a simple test</h3>
+<p>The <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX Readme provides</a> a basic example:</p>
+<pre><span class="pl-c">// or (lookup by css id):</span>
+<span class="pl-smi">FxAssert</span><span class="pl-k">.</span>verifyThat(<span class="pl-s"><span class="pl-pds">"</span>#myButton<span class="pl-pds">"</span></span>, <span class="pl-smi">LabeledMatchers</span><span class="pl-k">.</span>hasText(<span class="pl-s"><span class="pl-pds">"</span>click me!<span class="pl-pds">"</span></span>));</pre>
+<p>We'll add a button to our initial project to make sure the test succeeds.<br>We don't care about style or layout - just copy the example and add a simple button:</p>
+<figure class="post__image post__image--wide" ><img src="https://slashlog.org/media/posts/4/LibMan_firstTest.png" alt="Screenshot of working test" width="1339" height="822">
+<figcaption >The full setup with a working test.</figcaption>
+</figure>
+<h2 id="mcetoc_1d5idbv1sc">Adding Travis-CI - pom.xml - complexity here we come</h2>
+After adding a few classes and more junit tests I really wanted to add <a href="https://travis-ci.org" target="_blank" rel="noopener noreferrer">Travis-CI</a> to ensure a constant working state and get instant feedback on how the code is doing.
+<p>Travis builds the project and runs the tests. In order to to that, it needs to download all dependencies.</p>
+<p class="msg msg--info">Maven writes its configuration in a pom.xml. It also priovides a default project structure.</p>
+<p>Thanks to <a href="https://stackoverflow.com/questions/12508180/how-do-you-mavenize-a-project-using-intellij/12508597#12508597" target="_blank" rel="noopener noreferrer">Stackoverflow I also found a way to add Maven to an existing project</a> in Intellij. Intellij also asks to create a default project structure. After restructuring the project, moving all files in the new directories make sure that the project still runns.</p>
+<h3 id="mcetoc_1d5k3l76le">adding maven</h3>
+<p>Thanks to the <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX Readme</a> we know how to add dependencies:</p>
+<pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;org.testfx&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;testfx-junit5&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;4.0.15-alpha&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">scope</span>&gt;test&lt;/<span class="pl-ent">scope</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre>
+<p>After adding all dependencies, we add Travis</p>
+<h3 id="mcetoc_1d5k432grf">.travis.yaml</h3>
+<p>Travis works with most programming languages and provides a good documentation. All configuration is done inside a <code>/.travis.yaml</code> file. A <a href="https://stackoverflow.com/questions/49116678/how-to-run-a-test-on-travis-which-uses-javafx-elements" target="_blank" rel="noopener noreferrer">quick search also shows a basic example</a> on how to test JavaFX with Travis: </p>
+<pre class="lang-java prettyprint prettyprinted"><code><span class="pln">before_install</span><span class="pun">:</span>
+  <span class="pun">-</span> <span class="kwd">if</span> <span class="pun">[[</span> <span class="str">"${TRAVIS_OS_NAME}"</span> <span class="pun">==</span><span class="pln"> linux </span><span class="pun">]];</span><span class="pln"> then export DISPLAY</span><span class="pun">=:</span><span class="lit">99.0</span><span class="pun">;</span><span class="pln"> sh </span><span class="pun">-</span><span class="pln">e </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">init</span><span class="pun">.</span><span class="pln">d</span><span class="pun">/</span><span class="pln">xvfb start</span><span class="pun">;</span><span class="pln"> fi
+
+install</span><span class="pun">:</span> <span class="kwd">true<br></span></code></pre>
+<p> adding this to <code>.travis.yaml</code> should to the trick.</p>
+<h3 id="mcetoc_1d5k4b7jsg">A personal motivator: Travis-CI</h3>
+<p class="msg msg--highlight  msg--success">The first run will take a while, it might need a few fixes... but it does feel amazing when your build is passing!</p>
+<p> <img class="post__image--center" src="https://slashlog.org/media/posts/4/travis-status.png" alt="Build history" width="604" height="418"></p>
+<p>Check the console for any hints and errors. Make sure your tests are actually beeing executed!</p>
+<p><img class="post__image" src="https://slashlog.org/media/posts/4/travis-tests.png" alt="all executed tests succeeded." width="791" height="486"></p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>every tool deserves a name</title>
         <author>

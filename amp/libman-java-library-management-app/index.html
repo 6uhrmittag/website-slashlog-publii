@@ -1,0 +1,595 @@
+<!doctype html><html amp lang="en"><head><meta charset="utf-8"><title>LibMan - exploring Java - slashlog</title><link rel="canonical" href="https://slashlog.org/libman-java-library-management-app/"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css"><script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script><script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script><script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script><script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://slashlog.org/amp/libman-java-library-management-app/"},"headline":"LibMan - exploring Java","datePublished":"2019-03-09T20:32","dateModified":"2019-03-10T17:16","image":{"@type":"ImageObject","url":"https://slashlog.org/media/website/admindojo_rund.png","height":1589,"width":1838},"description":"<p>This documents the development of LibMan - a Java programming assignment.</p>\n<p>The goal is to create a library management tool with GUI written in Java.<br>Since this is my first and probably last Java application, I'll use this opportunity to focus on stuff I'm personally interested in:</p>\n<ul>\n<li>how to use a CI with Java</li>\n<li>how to test Java applications</li>\n<li>how to ship Java applications (to Windows)</li>\n<li>usage of design patterns","publisher":{"@type":"Organization","name":"marvin","logo":{"@type":"ImageObject","url":"https://slashlog.org/media/website/admindojo_rund.png","height":1589,"width":1838}}}</script><style amp-custom>article,
+aside,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block; }
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+amp-img {
+  max-width: 100%; }
+
+button,
+input,
+select,
+textarea {
+  font: inherit; }
+
+html {
+  font-size: 1rem; }
+
+body {
+  background: #f1f1f1;
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  line-height: 1.6; }
+
+a {
+  color:  #039be5;
+  text-decoration: none;
+  -webkit-transition: all 0.12s linear 0s;
+  -o-transition: all 0.12s linear 0s;
+  transition: all 0.12s linear 0s; }
+
+a:hover {
+  color: #262626;
+  text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip: ink; }
+
+a:active {
+  color: #262626; }
+
+a:focus {
+  outline: 2px dotted #039be5; }
+
+figure,
+blockquote,
+p,
+ul,
+ol,
+dl,
+table,
+hr,
+fieldset {
+  margin-top: 1.6rem; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 2.13333rem; }
+
+h1 {
+  font-size: 1.67583rem;
+  font-weight: normal; }
+
+h2 {
+  font-size: 1.4729rem; }
+
+h3 {
+  font-size: 1.29454rem; }
+
+h4 {
+  font-size: 1.13778rem; }
+
+h5 {
+  font-size: 1rem; }
+
+h6 {
+  font-size: 0.87891rem; }
+
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p {
+  margin-top: 0.8rem; }
+
+b,
+strong {
+  font-weight: 600; }
+
+blockquote {
+  color: #6c7175;
+  font-family: "Droid Serif", "Times", "Source Serif Pro", serif;
+  font-style: italic;
+  padding: 1.33333rem 0.53333rem 1.33333rem 3.2rem;
+  position: relative; }
+  blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 4.41226rem;
+    position: absolute;
+    left: 0;
+    top: -12px;
+    color: rgba(108, 113, 117, 0.5); }
+  blockquote > :nth-child(1) {
+    margin-top: 0; }
+
+ul,
+ol {
+  margin-left: 2rem; }
+  ul > li,
+  ol > li {
+    list-style: inherit;
+    padding: 0 0 0.26667rem 0.26667rem; }
+
+dl dt {
+  color: #262626;
+  font-weight: 600; }
+
+code,
+pre {
+  background-color: #f1f1f1;
+  font-family: monospace; }
+
+pre {
+  margin: 1.6rem 0 0;
+  padding: 1.6rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto; }
+  pre > code {
+    color: #262626;
+    padding: 0; }
+
+code {
+  border-radius: 3px;
+  color: #262626;
+  padding: 0.26667rem 0.53333rem; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #d4d4d4;
+  width: 100%;
+  overflow-x: auto;
+  vertical-align: top;
+  text-align: left;
+  white-space: nowrap; }
+  table th {
+    font-weight: 500;
+    padding: 0.53333rem 1.06667rem; }
+  table tr {
+    border-bottom: 1px solid #d4d4d4; }
+    table tr:nth-child(2n) {
+      background: #f1f1f1; }
+  table td {
+    padding: 0.53333rem 1.06667rem; }
+
+figcaption {
+  clear: both;
+  color: rgba(108, 113, 117, 0.6);
+  font-size: 0.82397rem;
+  margin: 0.8rem 0 0;
+  text-align: center; }
+
+sub,
+sup {
+  font-size: 65%; }
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+
+.btn, [type=button],
+[type=submit],
+button {
+  background: #039be5;
+  border: none;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.87891rem;
+  font-weight: 500;
+  line-height: 1.9;
+  padding: 0.53333rem 1.33333rem;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .15s ease;
+  -o-transition: all .15s ease;
+  transition: all .15s ease;
+  width: auto; }
+  .btn:hover, [type=button]:hover,
+  [type=submit]:hover,
+  button:hover {
+    background: #262626;
+    color: #ffffff; }
+  .btn:focus, [type=button]:focus,
+  [type=submit]:focus,
+  button:focus {
+    outline: none; }
+  .btn-outline {
+    border: 1px solid #ddd;
+    background: #ffffff;
+    border-radius: 3px;
+    color: #262626; }
+
+[type=button],
+[type=submit],
+button {
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+
+.navbar {
+  background: #039be5;
+  -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  line-height: 3;
+  max-height: 4rem; }
+  .navbar > div {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto; }
+  .navbar a {
+    color: #ffffff;
+    text-decoration: none; }
+  .navbar-sidebar-toggle {
+    left: 0;
+    position: relative;
+    text-indent: -99999rem; }
+    .navbar-sidebar-toggle:before {
+      content: "";
+      display: block;
+      border-top: 0.375rem double #ffffff;
+      border-bottom: 0.125rem solid #ffffff;
+      height: 0.125rem;
+      position: absolute;
+      text-indent: 0;
+      top: 50%;
+      width: 1.3rem;
+      -webkit-transform: translate(0px, -50%);
+      -ms-transform: translate(0px, -50%);
+      transform: translate(0px, -50%); }
+
+
+.logo {
+            background-image: url('https://slashlog.org/media/website/admindojo_rund.png');
+            background-size: auto 2rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+            margin: 0 auto;
+            height: 2rem;
+            text-indent: -9999px;
+            width: 240px;vertical-align: middle;
+        }
+        .logo.logo-text {
+            line-height: 2;
+            text-align: center;
+            text-indent: 0;
+        }
+
+amp-sidebar {
+  background: #ffffff;
+  width: 240px; }
+  amp-sidebar > ul {
+    margin: 0.8rem 0 0;
+    padding: 0; }
+    amp-sidebar > ul ul {
+      border-left: 1px solid #d4d4d4;
+      margin: 0.53333rem 0 0; }
+    amp-sidebar > ul li {
+      color: #262626;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      list-style: none;
+      line-height: 1.4;
+      padding: 0.42667rem 1.06667rem; }
+      amp-sidebar > ul li li {
+        font-weight: normal;
+        padding: 0.26667rem 0 0.26667rem 1.06667rem; }
+    amp-sidebar > ul a,
+    amp-sidebar > ul a:visited {
+      color: #262626; }
+
+.bg-white {
+  background: #ffffff; }
+
+.wrap-page {
+  max-width: 700px;
+  margin: 0 auto; }
+
+@media all and (max-width: 43.6875em) {
+  .wrap-inner {
+    padding: 0 6%; } }
+
+.page-title {
+  background: #ffffff;
+  -webkit-box-shadow: 0 2px 3px rgba(38, 38, 38, 0.1);
+  box-shadow: 0 2px 3px rgba(38, 38, 38, 0.1);
+  margin-bottom: 0.8rem;
+  padding: 1.6rem 6%; }
+  .page-title > h1 {
+    margin: 0;
+    font-size: 1.29454rem; }
+  .page-title > p {
+    font-size: 0.87891rem;
+    color: #6c7175;
+    line-height: 1.3;
+    margin: 0.26667rem 0 0; }
+  .page-title-author {
+    border-radius: 50%;
+    float: left;
+    height: 2.5rem;
+    width: 2.5rem; }
+    .page-title-author + h1 {
+      margin-left: 3.5rem; }
+      .page-title-author + h1 + p {
+        margin-left: 3.5rem; }
+
+.card {
+  background: #ffffff;
+  -webkit-box-shadow: 0 2px 3px rgba(38, 38, 38, 0.1);
+  box-shadow: 0 2px 3px rgba(38, 38, 38, 0.1);
+  margin-bottom: 0.8rem;
+  padding-bottom: 1.06667rem; }
+
+  .card-meta {
+    border-top: 1px solid #d4d4d4;
+    color: rgba(108, 113, 117, 0.6);
+    font-size: 0.7242rem;
+    font-weight: 500;
+    margin-top: 1.06667rem;
+    padding-top: 1.06667rem;
+    text-transform: uppercase; }
+    .card-meta a + time:before {
+      content: "";
+      background: #d4d4d4;
+      display: inline-block;
+      height: 3px;
+      margin: 0 8px;
+      width: 3px;
+      vertical-align: middle;
+      border-radius: 50%; }
+  .card-text {
+    font-size: 0.9375rem;
+    overflow: hidden;
+    padding: 0 6%; }
+    .card-text h2 {
+      font-size: 1.13778rem; }
+
+.post {
+  margin-bottom: 2.13333rem; }
+  .post-featured-image {
+    margin-top: 0;
+    position: relative; }
+    .post-featured-image > figcaption {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 3px;
+      color: #ffffff;
+      position: absolute;
+      bottom: 0.8rem;
+      padding: 0 0.26667rem;
+      right: 6%; }
+  .post-header {
+    margin-bottom: 2.13333rem; }
+  .post-meta {
+    border-bottom: 1px solid #d4d4d4;
+    color: rgba(108, 113, 117, 0.6);
+    font-size: 0.7242rem;
+    font-weight: 500;
+    margin-top: 1.06667rem;
+    padding-bottom: 1.06667rem;
+    text-transform: uppercase; }
+    .post-meta a + time:before {
+      content: "";
+      background: #d4d4d4;
+      display: inline-block;
+      height: 3px;
+      margin: 0 8px;
+      width: 3px;
+      vertical-align: middle;
+      border-radius: 50%; }
+  .post-tag {
+    margin: 0; }
+    .post-tag > li {
+      display: inline-block;
+      padding: 0; }
+      .post-tag > li a {
+        background: #f1f1f1;
+        border-radius: 2px;
+        color: #6c7175;
+        font-size: 0.77248rem;
+        display: inline-block;
+        margin: 0 0.26667rem 0.26667rem 0;
+        padding: 0.26667rem 0.53333rem; }
+        .post-tag > li a:hover {
+          background: #039be5;
+          color: #ffffff;
+          text-decoration: none; }
+  .post-share {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+    width: 100%; }
+    .post-share amp-social-share {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      background-size: 24px; }
+  .post-scroll {
+    color: #ffffff;
+    background: #039be5;
+    bottom: 10px;
+    border-radius: 50%;
+    border: none;
+    -webkit-box-shadow: 0 1px 1.5px 0 rgba(38, 38, 38, 0.12), 0 1px 1px 0 rgba(38, 38, 38, 0.24);
+    box-shadow: 0 1px 1.5px 0 rgba(38, 38, 38, 0.12), 0 1px 1px 0 rgba(38, 38, 38, 0.24);
+    font-size: 1.13778rem;
+    height: 46px;
+    opacity: 0;
+    outline: none;
+    position: fixed;
+    padding: 0;
+    right: 4%;
+    visibility: hidden;
+    width: 46px;
+    z-index: 9999; }
+    .post-scroll-marker {
+      height: 0px;
+      position: absolute;
+      top: 100px;
+      width: 0px; }
+        .post-pagination {
+    background: #f1f1f1;
+    -webkit-box-shadow: inset 0 2px 3px rgba(38, 38, 38, 0.1);
+    box-shadow: inset 0 2px 3px rgba(38, 38, 38, 0.1);
+    border-top: 1px solid #d4d4d4;
+    padding: 1.06667rem 0; }
+    .post-pagination > div {
+      line-height: 1.2;
+      padding: 0.53333rem 1.06667rem;
+      text-align: center; }
+      .post-pagination > div span {
+        display: block;
+        color: #6c7175;
+        font-size: 0.7242rem;
+        font-weight: 500;
+        margin-bottom: 0.26667rem;
+        text-transform: uppercase; }
+    .post-pagination-prev a:before {
+      content: "\2190";
+      margin-right: 0.26667rem; }
+    .post-pagination-next a:after {
+      content: "\2192";
+      margin-left: 0.26667rem; }
+
+aside {
+  margin: 1.6rem 0 0; }
+
+.align-left {
+  text-align: left; }
+
+.align-right {
+  text-align: right; }
+
+.align-center {
+  text-align: center; }
+
+.align-justify {
+  text-align: justify; }
+
+.msg {
+  border-left: 2px solid transparent;
+  padding: 1.06667rem 1.06667rem; }
+  .msg--highlight {
+    background-color: #fff8e6;
+    border-color: #e2ac4f; }
+  .msg--info {
+    background: rgba(45, 97, 201, 0.03);
+    border-color: #039be5; }
+  .msg--success {
+    background: #f7fbf6;
+    border-color: #5ab44b; }
+  .msg--warning {
+    background: #fff3f3;
+    border-color: #c06367;
+    color: #a94442; }
+
+.dropcap:first-letter {
+  float: left;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 2.16943rem;
+  line-height: 0.7;
+  margin-right: 0.53333rem;
+  padding: 0.53333rem 0.53333rem 0.53333rem 0; }
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0.8rem 0; }
+  .pagination > a {
+    padding-left: 0;
+    padding-right: 0;
+    width: 49%; }
+  .pagination-right {
+    margin-left: auto; }
+
+.bottom {
+  background: #039be5;
+  color: #ffffff;
+  padding: 1.06667rem 4%;
+  text-align: center; }</style><style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><script async src="https://cdn.ampproject.org/v0.js"></script><script custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js" async></script><script custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js" async></script></head><body class="bg-white"><nav class="navbar wrap-inner" id="top"><div><a on="tap:navbar-sidebar.toggle" class="navbar-sidebar-toggle" title="Menu">Menu</a> <a class="logo" href="https://slashlog.org/amp">slashlog</a></div></nav><main class="wrap-page"><article class="post"><div class="wrap-inner"><header class="post-header"><h1>LibMan - exploring Java</h1><p class="post-meta"><time datetime="2019-03-09T20:32">9 March 2019</time></p></header><p>This documents the development of LibMan - a Java programming assignment.</p><p>The goal is to create a library management tool with GUI written in Java.<br>Since this is my first and probably last Java application, I'll use this opportunity to focus on stuff I'm personally interested in:</p><ul><li>how to use a CI with Java</li><li>how to test Java applications</li><li>how to ship Java applications (to Windows)</li><li>usage of design patterns<hr></li></ul><div class="post__toc"><h3>Table of Contents</h3><ul><li><a href="#mcetoc_1d5hvj3980">First things first: a pretty name</a></li><li><a href="#mcetoc_1d5i0f32u4">Versioning - git, Github, Gitlab, Bitbucket?</a></li><li><a href="#mcetoc_1d5i0252k1">Tough decision: License</a></li><li><a href="#mcetoc_1d5i199855">IDE vs. VIM</a></li><li><a href="#mcetoc_1d5i1oje97">The wizard of new project - setting up a project</a></li><li><a href="#mcetoc_1d5i3e8398">Instant Motivation: adding tests</a><ul><li><a href="#mcetoc_1d5i3rffh9">First refactoring</a></li><li><a href="#mcetoc_1d5icomueb">Adding a simple test</a></li></ul></li><li><a href="#mcetoc_1d5idbv1sc">Adding Travis-CI - pom.xml - complexity here we come</a><ul><li><a href="#mcetoc_1d5k3l76le">adding maven</a></li><li><a href="#mcetoc_1d5k432grf">.travis.yaml</a></li><li><a href="#mcetoc_1d5k4b7jsg">A personal motivator: Travis-CI</a></li></ul></li></ul></div><hr><p>I won't focus on code quality; I'll reuse code I created during the last semester and use as much IDE features as possible.</p><p>The assignment requires:</p><ul><li>diagrams</li><li>test data</li><li>GUI with JavaFX</li></ul><p class="msg msg--highlight">Note: The code will contain German text.</p><h2 id="mcetoc_1d5hvj3980">First things first: a pretty name</h2><p>As I already pointed out, I think a name is important.</p><p class="msg msg--success align-center">LibMan</p><p>done.</p><h2 id="mcetoc_1d5i0f32u4">Versioning - git, Github, Gitlab, Bitbucket?</h2><p>Even if we won't use all features of versioing, if it is code</p><p class="msg msg--info">there is no excuse to not use versioning.</p><p>I'll use <a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a>.</p><p class="msg msg--info">I'm not a fan of <a href="https://gitlab.com" target="_blank" rel="noopener noreferrer">Gitlab </a>- I just get distracted by all its features.</p><p>Github solves one problem: Versioning. I'll connect external services as soon as I need them.</p><p class="msg msg--info">Simplicity is king, especially for beginners.</p><p>I'll use a private repository for the time of the development. Github kindly provides private repositories for all users and a set of free tools for students: <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">GitHub Student Developer Pack.</a><br>The pack enables students to use TravisCI with private repositories👏.</p><h2 id="mcetoc_1d5i0252k1">Tough decision: License</h2><p>Github kindly reminds us that licensing can be important. This is a programming assignment - it's only purpose is to learn stuff and be helpful for others:</p><p class="msg msg--info">MIT makes sharing as simple as possible.</p><h2 id="mcetoc_1d5i199855">IDE vs. VIM</h2><p>It would be cool to use VIM to write code. But, thanks to the <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">GitHub Student Developer Pack</a> I'm able to use<a href="https://www.jetbrains.com/idea" target="_blank" rel="noopener noreferrer"> IntelliJ IDEA Ultimate</a>. I never looked into Java IDEs - IntelliJ just works.</p><h2 id="mcetoc_1d5i1oje97">The magical wizard - setting up a project</h2><p>Since I don't even know that half of the choices mean, I just the magical wizard to create a JavaFX app with Java 1.8 SDK.</p><p class="msg msg--info">Don't add anything to the initial project that you don't understand. Add complexity as needed.</p><p>Run the initial project to make sure you start with a working project. We'll break it later, but it should run at least once.</p><figure class="post__image post__image--center"><amp-img src="https://slashlog.org/media/posts/4/LibMan_firstRun.png" sizes="(max-width: 749px) 100vw, 749px" srcset="https://slashlog.org/media/posts/4/responsive/LibMan_firstRun-xs.png 300w ,https://slashlog.org/media/posts/4/responsive/LibMan_firstRun-sm.png 480w ,https://slashlog.org/media/posts/4/responsive/LibMan_firstRun-md.png 749w" alt="First run." width="654" height="411" layout="responsive"></amp-img><figcaption>First run.</figcaption></figure><h2 id="mcetoc_1d5i3e8398">Instant Motivation: adding tests</h2><p>Writing tests can be annoying and take time, but tests not only ensure a working build, they also provide feedback and motivation. Since we know that the empty project worked, we'll add a test to ensure this state.</p><h3 id="mcetoc_1d5i3rffh9">First refactoring</h3><p id="mcetoc_1d5icht6ra">Luckily there is a testing framework for testing javaFx: <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX</a></p><p>But, adding tests requires a few changes to our initial project structure:</p><ol><li>Create a "testing"-directory according to this Stackoverflow answer: <a href="https://stackoverflow.com/questions/41638654/java-project-folder-structure-in-intellij-idea" target="_blank" rel="noopener noreferrer" title="Java project folder structure in IntelliJ IDEA">https://stackoverflow.com/questions/41638654/java-project-folder-structure-in-intellij-idea</a>:<pre><code>/src/</code><br><code>/src/main/com/</code><br><code>/src/main/com/LibMan/</code><br><code>/tests/</code><br>/tests/com/<br><code>/tests/com/LibMan</code></pre></li><li>add junit by following the <a href="https://www.jetbrains.com/help/idea/configuring-testing-libraries.html" target="_blank" rel="noopener noreferrer">jetbrains guide</a><ol><li>make sure to rember your choice! junit4 or junit5.</li></ol></li><li>add TestFX with Maven:<figure class="post__image post__image--center"><amp-img src="https://slashlog.org/media/posts/4/LibMan_addMavenDependency.png" sizes="(max-width: 749px) 100vw, 749px" srcset="https://slashlog.org/media/posts/4/responsive/LibMan_addMavenDependency-xs.png 300w ,https://slashlog.org/media/posts/4/responsive/LibMan_addMavenDependency-sm.png 480w ,https://slashlog.org/media/posts/4/responsive/LibMan_addMavenDependency-md.png 749w" alt="adding a dependendy" width="916" height="346" layout="responsive"></amp-img><figcaption>Pick the version that fits your junit version!</figcaption></figure></li></ol><h3 id="mcetoc_1d5icomueb">Adding a simple test</h3><p>The <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX Readme provides</a> a basic example:</p><pre><span class="pl-c">// or (lookup by css id):</span>
+<span class="pl-smi">FxAssert</span><span class="pl-k">.</span>verifyThat(<span class="pl-s"><span class="pl-pds">"</span>#myButton<span class="pl-pds">"</span></span>, <span class="pl-smi">LabeledMatchers</span><span class="pl-k">.</span>hasText(<span class="pl-s"><span class="pl-pds">"</span>click me!<span class="pl-pds">"</span></span>));</pre><p>We'll add a button to our initial project to make sure the test succeeds.<br>We don't care about style or layout - just copy the example and add a simple button:</p><figure class="post__image post__image--wide"><amp-img src="https://slashlog.org/media/posts/4/LibMan_firstTest.png" sizes="(max-width: 749px) 100vw, 749px" srcset="https://slashlog.org/media/posts/4/responsive/LibMan_firstTest-xs.png 300w ,https://slashlog.org/media/posts/4/responsive/LibMan_firstTest-sm.png 480w ,https://slashlog.org/media/posts/4/responsive/LibMan_firstTest-md.png 749w" alt="Screenshot of working test" width="1339" height="822" layout="responsive"></amp-img><figcaption>The full setup with a working test.</figcaption></figure><h2 id="mcetoc_1d5idbv1sc">Adding Travis-CI - pom.xml - complexity here we come</h2>After adding a few classes and more junit tests I really wanted to add <a href="https://travis-ci.org" target="_blank" rel="noopener noreferrer">Travis-CI</a> to ensure a constant working state and get instant feedback on how the code is doing.<p>Travis builds the project and runs the tests. In order to to that, it needs to download all dependencies.</p><p class="msg msg--info">Maven writes its configuration in a pom.xml. It also priovides a default project structure.</p><p>Thanks to <a href="https://stackoverflow.com/questions/12508180/how-do-you-mavenize-a-project-using-intellij/12508597#12508597" target="_blank" rel="noopener noreferrer">Stackoverflow I also found a way to add Maven to an existing project</a> in Intellij. Intellij also asks to create a default project structure. After restructuring the project, moving all files in the new directories make sure that the project still runns.</p><h3 id="mcetoc_1d5k3l76le">adding maven</h3><p>Thanks to the <a href="https://github.com/TestFX/TestFX" target="_blank" rel="noopener noreferrer">TestFX Readme</a> we know how to add dependencies:</p><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;org.testfx&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;testfx-junit5&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;4.0.15-alpha&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">scope</span>&gt;test&lt;/<span class="pl-ent">scope</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre><p>After adding all dependencies, we add Travis</p><h3 id="mcetoc_1d5k432grf">.travis.yaml</h3><p>Travis works with most programming languages and provides a good documentation. All configuration is done inside a <code>/.travis.yaml</code> file. A <a href="https://stackoverflow.com/questions/49116678/how-to-run-a-test-on-travis-which-uses-javafx-elements" target="_blank" rel="noopener noreferrer">quick search also shows a basic example</a> on how to test JavaFX with Travis: </p><pre class="lang-java prettyprint prettyprinted"><code><span class="pln">before_install</span><span class="pun">:</span>
+  <span class="pun">-</span> <span class="kwd">if</span> <span class="pun">[[</span> <span class="str">"${TRAVIS_OS_NAME}"</span> <span class="pun">==</span><span class="pln"> linux </span><span class="pun">]];</span><span class="pln"> then export DISPLAY</span><span class="pun">=:</span><span class="lit">99.0</span><span class="pun">;</span><span class="pln"> sh </span><span class="pun">-</span><span class="pln">e </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">init</span><span class="pun">.</span><span class="pln">d</span><span class="pun">/</span><span class="pln">xvfb start</span><span class="pun">;</span><span class="pln"> fi
+
+install</span><span class="pun">:</span> <span class="kwd">true<br></span></code></pre><p> adding this to <code>.travis.yaml</code> should to the trick.</p><h3 id="mcetoc_1d5k4b7jsg">A personal motivator: Travis-CI</h3><p class="msg msg--highlight msg--success">The first run will take a while, it might need a few fixes... but it does feel amazing when your build is passing!</p><figure class="post__image--center"> <amp-img src="https://slashlog.org/media/posts/4/travis-status.png" sizes="(max-width: 749px) 100vw, 749px" srcset="https://slashlog.org/media/posts/4/responsive/travis-status-xs.png 300w ,https://slashlog.org/media/posts/4/responsive/travis-status-sm.png 480w ,https://slashlog.org/media/posts/4/responsive/travis-status-md.png 749w" alt="Build history" width="604" height="418" layout="responsive"></amp-img></figure><p>Check the console for any hints and errors. Make sure your tests are actually beeing executed!</p><figure class="post__image"><amp-img src="https://slashlog.org/media/posts/4/travis-tests.png" sizes="(max-width: 749px) 100vw, 749px" srcset="https://slashlog.org/media/posts/4/responsive/travis-tests-xs.png 300w ,https://slashlog.org/media/posts/4/responsive/travis-tests-sm.png 480w ,https://slashlog.org/media/posts/4/responsive/travis-tests-md.png 749w" alt="all executed tests succeeded." width="791" height="486" layout="responsive"></amp-img></figure><aside><ul class="post-tag"><li><a href="https://slashlog.org/amp/tag/dev-journal/">dev-journal</a></li><li><a href="https://slashlog.org/amp/tag/projects/">projects</a></li></ul><div class="post-share"><amp-social-share type="system" width="40" height="40" data-param-text="LibMan - exploring Java"></amp-social-share><amp-social-share type="twitter" width="40" height="40" data-param-text="LibMan - exploring Java" data-param-url="https://slashlog.org/amp/libman-java-library-management-app/"></amp-social-share><amp-social-share type="whatsapp" width="40" height="40" data-param-text="LibMan - exploring Java"></amp-social-share></div></aside></div></article><nav class="post-pagination wrap-inner"><div class="post-pagination-prev"><span>Prev: </span><a href="https://slashlog.org/amp/every-tool-deserves-a-name/">every tool deserves a name</a></div></nav></main><amp-animation id="showAnim" layout="nodisplay"><script type="application/json">{
+                    "duration": "200ms",
+                    "fill": "both",
+                    "iterations": "1",
+                    "direction": "alternate",
+                    "animations": [{
+                        "selector": ".post-scroll",
+                        "keyframes": [{
+                            "opacity": "1",
+                            "visibility": "visible",
+                            "transform": "scale(1)"
+                        }]
+                    }]
+                }</script></amp-animation><amp-animation id="hideAnim" layout="nodisplay"><script type="application/json">{
+                    "duration": "200ms",
+                    "fill": "both",
+                    "iterations": "1",
+                    "direction": "alternate",
+                    "animations": [{
+                        "selector": ".post-scroll",
+                        "keyframes": [{
+                            "opacity": "0",
+                            "visibility": "hidden",
+                            "transform": "scale(0.1)"
+                        }]
+                    }]
+                }</script></amp-animation><div class="post-scroll-marker"><amp-position-observer on="enter:hideAnim.start; exit:showAnim.start" layout="nodisplay"></amp-position-observer></div><button class="post-scroll" on="tap:top.scrollTo(duration=200)">&#8593;</button><footer class="bottom">Powered by Publii</footer><amp-sidebar id="navbar-sidebar" layout="nodisplay"><ul><li><span>projects</span><ul id="js-navbar-menu" class="navbar__submenu"><li><a href="https://taskbutler.org">taskbutler</a></li><li><a href="https://admindojo.org">admindojo</a></li></ul></li></ul></amp-sidebar></body></html>
