@@ -1005,8 +1005,8 @@ textarea {
       .sidebar .has-submenu > a,
       .sidebar .has-submenu > span {
         color: #343a41;
-        font-size: 1.125rem;
-        font-weight: 400;
+     /* font-size: 1.125rem;*/
+        font-weight: 400; 
         margin: 0.53333rem 0 0.53333rem; } }
   @media all and (min-width: 56.25em) {
     .sidebar .sub-title > span,
